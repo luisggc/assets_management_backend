@@ -1,0 +1,37 @@
+#https://app.quickdatabasediagrams.com/#/d/9uJHNm
+UNITS
+--
+#ID ocorrência // ID occurrence
+#Número identificador da ocorrência // Occurrence identifier number
+"ID_UNIT" int pk
+NAME string
+ID_COMPANY FK >- USERS.ID_COMPANY
+
+ASSETS
+--
+#ID ocorrência // ID occurrence
+#Número identificador da ocorrência // Occurrence identifier number
+"ID_ASSET" int pk
+ IMAGE string
+ NAME string
+ DESCRIPTION string
+ MODEL string
+ OWNER string
+ STATUS category
+ HEALTH_LEVEL number
+ID_UNIT int FK >- UNITS.ID_UNIT
+
+USERS
+--
+#ID ocorrência // ID occurrence
+#Número identificador da ocorrência // Occurrence identifier number
+"ID_USER" int pk
+NAME string
+ID_COMPANY fk
+
+COMPANIES
+--
+#ID ocorrência // ID occurrence
+#Número identificador da ocorrência // Occurrence identifier number
+"ID_COMPANY" int pk FK >- UNITS.ID_COMPANY
+NAME
