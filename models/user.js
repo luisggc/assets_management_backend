@@ -7,7 +7,7 @@ var userSchema = new Schema({
         type: String,
         require: true
     },
-    id_company: {
+    company: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Company'
