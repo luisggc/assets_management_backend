@@ -7,6 +7,11 @@ type Company {
   name: String!
 }
 
+input CompanyInput {
+  _id: ID!
+  name: String!
+}
+
 type Unit {
   _id: ID!
   name: String!
@@ -51,6 +56,8 @@ type Asset {
   type RootMutation {
     createAsset(assetInput: AssetInput): Asset
     createCompany(name: String!): Company
+    editCompany(CompanyInput: CompanyInput): Company
+    deleteCompany(_id: String!): String
     createUnit(name: String!): Unit
     createUser(name: String!): User
   }
