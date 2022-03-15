@@ -1,65 +1,20 @@
 var { buildSchema } = require("graphql");
+var { makeExecutableSchema } = require("@graphql-tools/schema");
+var { constraintDirective, constraintDirectiveTypeDefs } = require("graphql-constraint-directive");
+var allSchemas = [require("./company"), require("./asset"), require("./unit"), require("./user")];
 
-var graphQLSchema = buildSchema(`
+var typeSchemas = allSchemas.map((schema) => schema?.typeDefs).join("\n");
+var querySchemas = allSchemas.map((schema) => schema?.query).join("\n");
+var mutationSchemas = allSchemas.map((schema) => schema?.mutation).join("\n");
 
-type Company {
-  _id: ID!
-  name: String!
-}
-
-input CompanyInput {
-  _id: ID!
-  name: String!
-}
-
-type Unit {
-  _id: ID!
-  name: String!
-  company: Company!
-}
-
-type User {
-  _id: ID!
-  name: String!
-}
-
-type Asset {
-    _id: ID!
-    image: String!
-    name: String!
-    description: String!
-    model: String!
-    owner: String!
-    status: String!
-    health_level: Float!,
-    unit: Unit!
-}
-
-  input AssetInput {
-    image: String!
-      name: String!
-      description: String!
-      model: String!
-      owner: String!
-      status: String!
-      health_level: Float!,
-      unit: String!
-  }
-
+var typeDefs = buildSchema(`
+  ${typeSchemas}
   type RootQuery {
-    assets: [Asset!]!
-    companies: [Company!]!
-    units: [Unit!]!
-    users: [User!]!
+    ${querySchemas}
   }
 
   type RootMutation {
-    createAsset(assetInput: AssetInput): Asset
-    createCompany(name: String!): Company
-    editCompany(CompanyInput: CompanyInput): Company
-    deleteCompany(_id: String!): String
-    createUnit(name: String!): Unit
-    createUser(name: String!): User
+    ${mutationSchemas}
   }
 
   schema {
@@ -68,4 +23,9 @@ type Asset {
   }
 `);
 
-module.exports = { graphQLSchema };
+const schema = makeExecutableSchema({
+  typeDefs, schemaDirectives: { constraint: constraintDirective }
+})
+
+
+module.exports = { graphQLSchema: schema };

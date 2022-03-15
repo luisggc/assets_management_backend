@@ -1,18 +1,18 @@
 var Company = require("../../models/company.js");
 
 module.exports = {
+  companies: async () => {
+    try {
+      return await Company.find();
+    } catch {
+      throw err;
+    }
+  },
   createCompany: async ({ name }) => {
     // Could implement validation. Ex: do not allow companies with same name
     const company = new Company({ name });
     try {
       return await company.save();
-    } catch {
-      throw err;
-    }
-  },
-  companies: async () => {
-    try {
-      return await Company.find();
     } catch {
       throw err;
     }
