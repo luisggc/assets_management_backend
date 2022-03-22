@@ -1,4 +1,7 @@
 var typeDefs = `
+
+scalar Date
+
 type Asset {
     _id: ID!
     image: String!
@@ -27,15 +30,44 @@ type Asset {
     Alerting
     Stopped
   }
+
+  type AssetLog {
+    _id: ID!
+    type: String!
+    datetime: Date!
+    asset: Asset
+    responsible: User
+    value: Float!
+    updatedAt: Date!
+    createdAt: Date!
+  }
+
+  input AssetLogInput {
+    type: typeAssetLog!
+    datetime: Date
+    asset: String!
+    value: Float!
+    responsible: String!
+  }
+
+  enum typeAssetLog {
+    Status
+  }
 `;
+
+
 var query = `
 assets: [Asset!]!
+assetsLogs: [AssetLog]
+assetsLog(_id: String!): [AssetLog]
 `;
 
 var mutation = `
 createAsset(AssetInput: AssetInput): Asset
 editAsset(_id: ID!, AssetInput: AssetInput): Asset
 deleteAsset(_id: String!): String
+createAssetLog(AssetLogInput: AssetLogInput): AssetLog
+deleteAssetLog(_id: String!): String
 `;
 
 module.exports = {

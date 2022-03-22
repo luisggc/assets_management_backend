@@ -1,17 +1,20 @@
-var mongoose = require('mongoose')
+var mongoose = require("mongoose");
 
-var Schema = mongoose.Schema
+var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
+var userSchema = new Schema(
+  {
     name: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
     company: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'Company'
-    }
-})
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Company",
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model("User", userSchema);

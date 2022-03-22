@@ -33,7 +33,7 @@ mongoose
     app.listen(4000);
   })
   .catch((err) => {
-    console.log("Erro M ONGODBBBB");
+    console.log("Erro MONGODBBBB");
     console.log(err);
   });
 
