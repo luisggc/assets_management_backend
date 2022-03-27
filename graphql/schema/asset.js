@@ -51,8 +51,10 @@ type Asset {
   }
 
   enum typeAssetLog {
-    Status
+    HealthLevel
   }
+
+  
 `;
 
 

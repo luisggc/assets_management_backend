@@ -71,7 +71,6 @@ module.exports = {
   assetsLog: async (asset_id) => {
     try {
       let asset_logs = await AssetLog.find({ asset: { $eq: asset_id } });
-      console.log(asset_logs)
       return asset_logs.map((asset_log) => ({
         ...asset_log._doc,
         asset: () => singleAsset(asset_log.asset),
