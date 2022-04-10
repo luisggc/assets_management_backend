@@ -18,7 +18,7 @@ users: [User!]!
 var mutation = `
 createUser(name: String!, company: ID!): User
 editUser(UserInput: UserInput): User
-deleteUUser(_id: String!): String
+deleteUUser(_id: ID!): ID
 `;
 
 module.exports = {

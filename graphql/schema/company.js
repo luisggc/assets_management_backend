@@ -1,7 +1,7 @@
 var typeDefs = `
 type Company {
     _id: ID!
-    name: String!
+    name: String
 }
   
 input CompanyInput {
@@ -16,7 +16,7 @@ companies: [Company!]!
 var mutation = `
 createCompany(name: String!): Company
 editCompany(CompanyInput: CompanyInput): Company
-deleteCompany(_id: String!): String
+deleteCompany(_id: ID!): ID
 `;
 
 module.exports = {

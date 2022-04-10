@@ -67,9 +67,9 @@ assetsLog(_id: String!): [AssetLog]
 var mutation = `
 createAsset(AssetInput: AssetInput): Asset
 editAsset(_id: ID!, AssetInput: AssetInput): Asset
-deleteAsset(_id: String!): String
+deleteAsset(_id: ID!): ID
 createAssetLog(AssetLogInput: AssetLogInput): AssetLog
-deleteAssetLog(_id: String!): String
+deleteAssetLog(_id: ID!): ID
 `;
 
 module.exports = {
