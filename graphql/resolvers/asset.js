@@ -51,7 +51,7 @@ module.exports = {
     try {
       const asset_log = await AssetLog.findById(_id);
       asset_log.delete();
-      return _id._id;
+      return asset_log
     } catch {
       throw err;
     }

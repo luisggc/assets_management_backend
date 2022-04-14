@@ -21,7 +21,7 @@ module.exports = {
     try {
       const company = await Company.findById(_id);
       company.delete();
-      return _id._id;
+      return company
     } catch {
       throw err;
     }

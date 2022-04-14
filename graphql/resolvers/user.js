@@ -22,7 +22,7 @@ module.exports  = {
     try {
       const user = await User.findById(_id);
       user.delete();
-      return _id._id;
+      return user;
     } catch {
       throw err;
     }

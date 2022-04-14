@@ -16,7 +16,7 @@ companies: [Company!]!
 var mutation = `
 createCompany(name: String!): Company
 editCompany(CompanyInput: CompanyInput): Company
-deleteCompany(_id: ID!): ID
+deleteCompany(_id: ID!): Company
 `;
 
 module.exports = {

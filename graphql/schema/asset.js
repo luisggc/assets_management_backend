@@ -69,7 +69,7 @@ createAsset(AssetInput: AssetInput): Asset
 editAsset(_id: ID!, AssetInput: AssetInput): Asset
 deleteAsset(_id: ID!): ID
 createAssetLog(AssetLogInput: AssetLogInput): AssetLog
-deleteAssetLog(_id: ID!): ID
+deleteAssetLog(_id: ID!): AssetLog
 `;
 
 module.exports = {

@@ -1,10 +1,11 @@
 var Unit = require("../../models/unit.js");
+var { singleUnit } = require("./merge.js");
 
-module.exports  = {
+module.exports = {
   units: async () => {
     try {
       const units = Unit.find().populate("company");
-      return units
+      return units;
     } catch {
       throw err;
     }
@@ -12,17 +13,14 @@ module.exports  = {
   createUnit: async ({ name, company }) => {
     // Could implement validation. Ex: do not allow companies with same name
     const unit = new Unit({ name, company });
-    try {
-      return await unit.save();
-    } catch {
-      throw err;
-    }
+    const newUnit = await unit.save();
+    return await singleUnit(newUnit._id);
   },
   deleteUnit: async (_id) => {
     try {
       const unit = await Unit.findById(_id);
       unit.delete();
-      return _id._id;
+      return unit
     } catch {
       throw err;
     }

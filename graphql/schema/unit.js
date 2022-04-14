@@ -20,7 +20,7 @@ units: [Unit!]!
 var mutation = `
 createUnit(name: String!, company: ID!): Unit
 editUnit(UnitInput: UnitInput): Unit
-deleteUnit(_id: ID!): ID
+deleteUnit(_id: ID!): Unit
 `;
 
 module.exports = {
