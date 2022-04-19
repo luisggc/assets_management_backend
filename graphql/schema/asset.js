@@ -67,7 +67,7 @@ assetsLog(_id: String!): [AssetLog]
 var mutation = `
 createAsset(AssetInput: AssetInput): Asset
 editAsset(_id: ID!, AssetInput: AssetInput): Asset
-deleteAsset(_id: ID!): ID
+deleteAsset(_id: ID!): Asset
 createAssetLog(AssetLogInput: AssetLogInput): AssetLog
 deleteAssetLog(_id: ID!): AssetLog
 `;

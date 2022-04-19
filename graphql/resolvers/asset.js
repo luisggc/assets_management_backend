@@ -16,9 +16,13 @@ module.exports = {
     }
   },
   createAsset: async ({ AssetInput }) => {
-    const asset = new Asset(AssetInput);
     try {
-      return await asset.save();
+      const newAsset = new Asset(AssetInput);
+      const asset = await newAsset.save();
+      return {
+        ...asset._doc,
+        unit: () => singleUnit(asset.unit),
+      };
     } catch {
       throw err;
     }
@@ -27,7 +31,10 @@ module.exports = {
     try {
       const asset = await Asset.findById(_id);
       asset.delete();
-      return _id._id;
+      return {
+        ...asset._doc,
+        unit: () => singleUnit(asset.unit),
+      };
     } catch {
       throw err;
     }
@@ -36,8 +43,11 @@ module.exports = {
     //const companyUpdated = await Company.findByIdAndUpdate(_id, { name })
     const asset = await Asset.findById(_id);
     Object.assign(asset, AssetInput);
-    const updateAsset = asset.save();
-    return updateAsset;
+    const updateAsset = await asset.save();
+    return {
+      ...updateAsset._doc,
+      unit: () => singleUnit(updateAsset.unit),
+    };
   },
   createAssetLog: async ({ AssetLogInput }) => {
     const asset_log = new AssetLog(AssetLogInput);
@@ -51,7 +61,7 @@ module.exports = {
     try {
       const asset_log = await AssetLog.findById(_id);
       asset_log.delete();
-      return asset_log
+      return asset_log;
     } catch {
       throw err;
     }
