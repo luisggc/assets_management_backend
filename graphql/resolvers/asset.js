@@ -5,7 +5,7 @@ var AssetLog = require("../../models/asset_log.js");
 
 module.exports = {
   assets: async () => {
-    let assets = await Asset.find(); //.populate("unit");
+    let assets = await Asset.find().sort({createdAt: -1}); //.populate("unit");
     return assets.map((asset) => ({
       ...asset._doc,
       unit: () => singleUnit(asset.unit),
@@ -52,7 +52,7 @@ module.exports = {
     return asset_log;
   },
   assetsLogs: async () => {
-    let asset_logs = await AssetLog.find();
+    let asset_logs = await AssetLog.find().sort({createdAt: -1});
     return asset_logs.map((asset_log) => ({
       ...asset_log._doc,
       asset: () => singleAsset(asset_log.asset),

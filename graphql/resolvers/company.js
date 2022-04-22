@@ -3,7 +3,7 @@ var Company = require("../../models/company.js");
 module.exports = {
   companies: async () => {
     try {
-      return await Company.find();
+      return await Company.find().sort({createdAt: -1});
     } catch {
       throw err;
     }
