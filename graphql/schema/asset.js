@@ -45,13 +45,14 @@ type Asset {
   input AssetLogInput {
     type: typeAssetLog!
     datetime: Date
-    asset: String!
+    asset: ID!
     value: Float!
     responsible: String!
   }
 
   enum typeAssetLog {
     HealthLevel
+    Status
   }
 
   
@@ -61,7 +62,7 @@ type Asset {
 var query = `
 assets: [Asset!]!
 assetsLogs: [AssetLog]
-assetsLog(_id: String!): [AssetLog]
+assetsLog(_id: ID!): [AssetLog]
 `;
 
 var mutation = `
